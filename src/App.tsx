@@ -32,13 +32,24 @@ export default function App() {
     return saved ? JSON.parse(saved) : {};
   });
 
+  const [customDescriptions, setCustomDescriptions] = useState<Record<number, string>>(() => {
+    const saved = localStorage.getItem('egoTrackerDescriptions');
+    return saved ? JSON.parse(saved) : {};
+  });
+
   const [expandedWeeks, setExpandedWeeks] = useState<number[]>([currentWeekNum]);
+  const [editingWeek, setEditingWeek] = useState<number | null>(null);
+  const [editValue, setEditValue] = useState<string>('');
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     localStorage.setItem('egoTrackerState', JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    localStorage.setItem('egoTrackerDescriptions', JSON.stringify(customDescriptions));
+  }, [customDescriptions]);
 
   useEffect(() => {
     // Scroll to current week on mount if authenticated
@@ -66,6 +77,19 @@ export default function App() {
         ? prev.filter(w => w !== weekNum)
         : [...prev, weekNum]
     );
+  };
+
+  const handleEditStart = (weekNum: number, currentDesc: string) => {
+    setEditingWeek(weekNum);
+    setEditValue(currentDesc);
+  };
+
+  const handleEditSave = (weekNum: number) => {
+    setCustomDescriptions(prev => ({
+      ...prev,
+      [weekNum]: editValue
+    }));
+    setEditingWeek(null);
   };
 
   const togglePerson = (weekNum: number, person: string) => {
@@ -154,11 +178,12 @@ export default function App() {
         </header>
 
         <main className="flex-1 space-y-4 md:space-y-6">
-          {weekDescriptions.map((desc, idx) => {
+          {weekDescriptions.map((defaultDesc, idx) => {
             const weekNum = idx + 1;
             const weekState = state[weekNum] || {};
             const isCurrentWeek = weekNum === currentWeekNum;
             const isExpanded = expandedWeeks.includes(weekNum);
+            const displayDesc = customDescriptions[weekNum] || defaultDesc;
 
             return (
               <section 
@@ -182,7 +207,7 @@ export default function App() {
                     </div>
                     <h2 className={`font-bold tracking-tight text-white transition-all w-full
                       ${isExpanded ? 'text-xl sm:text-2xl md:text-[32px] mb-0' : 'text-base sm:text-lg md:text-xl text-slate-300 truncate'}`}>
-                      {isExpanded ? 'Mise týdne' : desc}
+                      {isExpanded ? 'Mise týdne' : displayDesc}
                     </h2>
                   </div>
                   <div className={`transform transition-transform duration-300 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
@@ -196,9 +221,47 @@ export default function App() {
                   className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-[1500px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                   <div className="px-4 sm:px-6 pb-6 md:px-10 md:pb-10 pt-4">
-                    <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-[600px] mb-8">
-                      {desc}
-                    </p>
+                    {editingWeek === weekNum ? (
+                      <div className="mb-8 max-w-[600px]">
+                        <textarea
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          className="w-full bg-black/20 border border-white/20 rounded-xl p-4 text-white focus:outline-none focus:border-indigo-500/50 resize-y"
+                          rows={3}
+                          autoFocus
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <div className="flex gap-3 mt-3">
+                          <button 
+                            onClick={(e) => { e.stopPropagation(); handleEditSave(weekNum); }}
+                            className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+                          >
+                            Uložit
+                          </button>
+                          <button 
+                            onClick={(e) => { e.stopPropagation(); setEditingWeek(null); }}
+                            className="bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+                          >
+                            Zrušit
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-start gap-4 mb-8">
+                        <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-[600px]">
+                          {displayDesc}
+                        </p>
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); handleEditStart(weekNum, displayDesc); }}
+                          className="text-slate-500 hover:text-white p-2 transition-colors -ml-2"
+                          title="Upravit popis"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
                       {people.map(person => {
