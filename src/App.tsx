@@ -92,13 +92,13 @@ export default function App() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen py-10 px-4 md:px-10 app-bg font-sans flex items-center justify-center">
+      <div className="min-h-screen py-6 px-4 md:py-10 md:px-10 app-bg font-sans flex items-center justify-center">
         <Toaster position="top-right" toastOptions={{
           success: { style: { background: '#10b981', color: '#fff', border: 'none', borderRadius: '12px', boxShadow: '0 20px 40px rgba(16,185,129,0.3)', fontWeight: 600, fontSize: '14px', padding: '16px 24px' } },
           error: { style: { background: '#ef4444', color: '#fff', border: 'none', borderRadius: '12px', boxShadow: '0 20px 40px rgba(239,68,68,0.3)', fontWeight: 600, fontSize: '14px', padding: '16px 24px' } }
         }} />
-        <div className="max-w-md w-full bg-white/5 border border-white/10 rounded-[32px] p-8 md:p-12 backdrop-blur-[20px] text-center shadow-[0_0_40px_rgba(99,102,241,0.15)] mx-auto relative z-10">
-          <h2 className="text-3xl font-black uppercase tracking-tight title-gradient mb-2">Přístup odepřen</h2>
+        <div className="max-w-md w-full bg-white/5 border border-white/10 rounded-[32px] p-6 sm:p-8 md:p-12 backdrop-blur-[20px] text-center shadow-[0_0_40px_rgba(99,102,241,0.15)] mx-auto relative z-10">
+          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight title-gradient mb-2">Přístup odepřen</h2>
           <p className="text-slate-400 mb-8 font-medium">Zadejte přístupový kód pro Bravery Council.</p>
           <form onSubmit={handleLogin} className="space-y-6">
             <input 
@@ -123,22 +123,22 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen py-10 px-4 md:px-10 app-bg font-sans">
+    <div className="min-h-screen py-6 px-4 md:py-10 md:px-10 app-bg font-sans">
       <Toaster position="top-right" toastOptions={{
         success: { style: { background: '#10b981', color: '#fff', border: 'none', borderRadius: '12px', boxShadow: '0 20px 40px rgba(16,185,129,0.3)', fontWeight: 600, fontSize: '14px', padding: '16px 24px' } },
         error: { style: { background: '#ef4444', color: '#fff', border: 'none', borderRadius: '12px', boxShadow: '0 20px 40px rgba(239,68,68,0.3)', fontWeight: 600, fontSize: '14px', padding: '16px 24px' } }
       }} />
       
       <div className="max-w-5xl mx-auto flex flex-col h-full relative">
-        <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between">
+        <header className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-end justify-between">
           <div>
-            <div className="text-lg font-semibold tracking-[10px] text-indigo-500 uppercase mb-2">Dvacet dvacet šest</div>
-            <h1 className="text-6xl md:text-[82px] font-black leading-[0.85] uppercase tracking-[-4px] title-gradient">
+            <div className="text-sm md:text-lg font-semibold tracking-[8px] md:tracking-[10px] text-indigo-500 uppercase mb-2">Dvacet dvacet šest</div>
+            <h1 className="text-5xl md:text-[82px] font-black leading-[0.85] uppercase tracking-[-2px] md:tracking-[-4px] title-gradient">
               Riskování<br/>Ega
             </h1>
           </div>
-          <div className="text-left md:text-right mt-6 md:mt-0 items-end flex flex-col justify-end">
-            <p className="text-lg text-slate-400 max-w-sm font-medium leading-relaxed mb-4">
+          <div className="text-left md:text-right mt-6 md:mt-0 items-start md:items-end flex flex-col justify-end">
+            <p className="text-base md:text-lg text-slate-400 max-w-sm font-medium leading-relaxed mb-4">
               Nepohodlí je cena za růst.<br/>52 týdnů. 5 lidí. Žádné výmluvy.
             </p>
             <button 
@@ -168,39 +168,39 @@ export default function App() {
                   ${isCurrentWeek ? 'border-indigo-500/50 shadow-[0_0_40px_rgba(99,102,241,0.15)] my-8' : 'hover:bg-white/10'}`}
               >
                 <div 
-                  className={`px-6 md:px-10 cursor-pointer flex justify-between items-center transition-all ${isExpanded ? 'pt-6 md:pt-10' : 'py-6 md:py-8'}`}
+                  className={`px-4 sm:px-6 md:px-10 cursor-pointer flex justify-between items-center transition-all ${isExpanded ? 'pt-6 md:pt-10' : 'py-5 md:py-8'}`}
                   onClick={() => toggleWeek(weekNum)}
                 >
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
-                       <div className="text-sm uppercase tracking-[2px] text-indigo-400 font-semibold">
+                  <div className="flex-1 min-w-0 pr-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
+                       <div className="text-xs sm:text-sm uppercase tracking-[2px] text-indigo-400 font-semibold">
                          Týden {weekNum} {isCurrentWeek && "— Aktuální"}
                        </div>
-                       <div className="text-xs text-slate-400 font-medium tracking-wide uppercase bg-black/20 px-3 py-1 rounded-full w-fit border border-white/5">
+                       <div className="text-[10px] sm:text-xs text-slate-400 font-medium tracking-wide uppercase bg-black/20 px-3 py-1 rounded-full w-fit border border-white/5">
                          {getWeekDateRange(weekNum)}
                        </div>
                     </div>
-                    <h2 className={`font-bold tracking-tight text-white transition-all max-w-[80%]
-                      ${isExpanded ? 'text-2xl md:text-[32px] mb-0' : 'text-lg md:text-xl text-slate-300 truncate'}`}>
+                    <h2 className={`font-bold tracking-tight text-white transition-all w-full
+                      ${isExpanded ? 'text-xl sm:text-2xl md:text-[32px] mb-0' : 'text-base sm:text-lg md:text-xl text-slate-300 truncate'}`}>
                       {isExpanded ? 'Mise týdne' : desc}
                     </h2>
                   </div>
-                  <div className={`transform transition-transform duration-300 ml-4 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
-                    <svg className="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className={`transform transition-transform duration-300 flex-shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
                 </div>
 
                 <div 
-                  className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}
+                  className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-[1500px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
-                  <div className="px-6 pb-6 md:px-10 md:pb-10 pt-4">
-                    <p className="text-lg text-slate-400 leading-relaxed max-w-[600px] mb-8">
+                  <div className="px-4 sm:px-6 pb-6 md:px-10 md:pb-10 pt-4">
+                    <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-[600px] mb-8">
                       {desc}
                     </p>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
                       {people.map(person => {
                         const isChecked = weekState[person] || false;
                         return (
