@@ -1,0 +1,82 @@
+export const weekDescriptions = [
+  "Nový rok, nové ego na zničení. Začni hned zostra!",
+  "Pořád ještě nevíš co děláš? Výborně, to je přesně ten stav.",
+  "Tento týden zkus někomu říct ne. Tvé ego to možná zabolí, ale ty porosteš.",
+  "Rozhodni se srdcem, ne logikou. Vystup z komfortní zóny.",
+  "Ego je jako bublina. Čím víc ji nafukuješ, tím spíš praskne. Praskni ji sám.",
+  "Kdy naposledy ses ztrapnil před lidmi a prežil to? Dneska je dobrej den.",
+  "Zkus něco, v čem jsi prokazatelně špatnej. A užij si to.",
+  "Kritika je jen informace. Zkus ji přijmout bez obhajování.",
+  "Neber se tak vážně. Vesmír má stejně jiné plány.",
+  "Omluv se jako první, i když si myslíš, že máš pravdu. Zkus tu volnost.",
+  "Deleguj úkol, u kterého si myslíš, že ho nikdo neudělá líp než ty.",
+  "Přiznej, že něčemu nerozumíš. Nahlas a před ostatními.",
+  "Jaro je tady! Zasaď semínko pochybnosti do své dokonalosti.",
+  "Postav se čelem k problému, který už měsíce ignoruješ.",
+  "Zkus den bez stěžování. Tvůj vnitřní ukňouránek bude mít absťák.",
+  "Požádej o pomoc. Není to slabost, je to odvaha.",
+  "Nech někoho jiného vyhrát hádku. Svět se kvůli tomu nezboří.",
+  "Zkus si dnes nedat na Instagram žádný filtr (ani životní).",
+  "Řekni někomu kompliment, který bys normálně ze žárlivosti spolkl.",
+  "Když uděláš chybu, řekni: 'Jasně, to jsem posral.' A jdi dál.",
+  "Začni větu: 'Měl jsi pravdu, mýlil jsem se...'",
+  "Tento týden zkus naslouchat na 100%. Nehraj si v hlavě odpověď.",
+  "Vystav se situaci, kde jsi nejhloupější v místnosti.",
+  "Usměj se na někoho, kdo tě štve. Ne ironicky. Doopravdy.",
+  "Jdi na rande nebo schůzku bez připravených odpovědí a záchranných sítí.",
+  "Zruš plány na večer, abys mohl být sám se sebou. I když to bolí.",
+  "Léto v plném proudu! Odhoď ego jako zimní kabát.",
+  "Pusť kontrolu. Nech někoho jiného naplánovat celý víkend.",
+  "Zveřejni něco ze své tvorby bez toho, abys říkal, že to 'ještě není hotové'.",
+  "Oslav úspěch někoho jiného s větší radostí než svůj vlastní.",
+  "Řekni si o přidání nebo něco drze ambiciózního. Nejhorší je jen 'ne'.",
+  "Tento týden nesuď knihu podle obalu. Ani člověka podle profilovky.",
+  "Trapnost je emoce, která zabíjí ego. Ponoř se do ní.",
+  "Podívej se do zrcadla a nevyčítej si ani jedinou věc.",
+  "Když se tě někdo zeptá jak se máš, řekni pravdu i když je to na hovno.",
+  "Opusť diskuzi na internetu, i když máš připravenej dokonalej roast.",
+  "Konec léta. Zkus si vzpomenout na to, že nejsi středobodem vesmíru.",
+  "Přihlaš se dobrovolně na úkol, ze kterého máš největší strach.",
+  "Dneska neříkej vůbec o sobě, dokud se tě někdo přímo nezeptá.",
+  "Vyzkoušej sport nebo aktivitu, u které budeš vypadat jako idiot.",
+  "Zkus být zranitelný před někým, před kým se normálně držíš.",
+  "Napiš zprávu někomu, komu se dlouho vyhýbáš. Bez výmluv.",
+  "Přestaň se snažit udělat na všechny dojem. Nikdo to neocení tolik, jak si myslíš.",
+  "Podzimní depka? Ne, jen další příležitost rozbít si iluze o dokonalosti.",
+  "Odpusť někomu, kdo tě před lety naštval. Ego živí zášť.",
+  "Uznání nepotřebuješ zvenčí. Poplácej se po rameni sám a stačí.",
+  "Vzdej se potřeby mít poslední slovo. Většinou je to stejně zbytečný.",
+  "Prodej nebo rozdej něco cenného, co drží tvoje ego nahoře.",
+  "Zkus se radovat z maličkostí, které se vůbec netýkají tebe.",
+  "Předvánoční stres? Tvoje ego ho vytváří. Zkus letos jen 'být'.",
+  "Shrnutí roku. Co nejvíc bolelo tvé ego letos? Skvělá práce.",
+  "Poslední týden! Dej egu smrtelnou ránu a připrav se na další kolo."
+];
+
+export const people = ["Vojtín", "Lukasby", "Džeremi", "Martonni", "Sajmonman"];
+
+export const praises = [
+  "Vojtín to dneska zabil! Ego v troskách, respekt nahoru!",
+  "Tohle byl masterclass zranitelnosti!",
+  "Ego has left the chat! Dobrá práce.",
+  "Skvělej risk! Kámo, tohle chce koule.",
+  "Kdo nemá ego, ten se nespletl. Bomba!",
+  "Takhle se dělá character development!",
+  "Respekt! Tvůj vnitřní kňouránek teď pláče v koutě.",
+  "Výborně! Další zářez na pažbě osobního růstu.",
+  "Je to tam! Ego rozsekaný na maděru.",
+  "Klobouček! Slušná zničovačka vlastního obrazu o dokonalosti.",
+  "Na pohodu. Žádný strach z failů, to máme rádi.",
+  "Máš můj obdiv. Dnes jsi to prostě poslal bez jištění.",
+];
+
+export const getPraiseForPerson = (name: string) => {
+  const customPraises = [
+    `${name} to dneska zabil! Ego v troskách, respekt nahoru!`,
+    `${name} dneska smazal svoje ego jako cache v prohlížeči!`,
+    `Výborně ${name}! Takhle se dělá progress!`,
+    `Šílený! ${name} dává svoje ego do čistírny.`,
+    `Tohle chce respekt! Plácni si, ${name}.`
+  ];
+  return customPraises[Math.floor(Math.random() * customPraises.length)];
+}
